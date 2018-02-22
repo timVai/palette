@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="false" default-autowire="byName">
+
+    <!--<context:annotation-config/>-->
+    <!--&lt;!&ndash;全局配置地址 &ndash;&gt;-->
+    <!--<context:property-placeholder location="classpath:*.properties" ignore-unresolvable="true" />-->
+
+    <!--<alias name="context:annotation-config" alias="sdf">-->
+        <!--<context:spring-configured></context:spring-configured>-->
+    <!--</alias>-->
+
+    <!--<bean id="asdf" class="com.mvai.demo.model.Entity">-->
+
+    <!--</bean>-->
+
+    <!--<import resource=""-->
+
+</beans>
