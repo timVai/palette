@@ -3,12 +3,15 @@ package com.mvai.demo.controller;
 import com.mvai.demo.model.Entity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by fanfengshi on 2017/12/29.
  */
 @RestController
+//@Controller
+//@ResponseBody
 public class TestController {
     private static final String template = "hello,%s";
 
