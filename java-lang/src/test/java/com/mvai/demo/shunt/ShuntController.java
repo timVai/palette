@@ -16,7 +16,7 @@ import java.util.Map;
 public class ShuntController {
 
 
-    public static Response doService(Request request)  {
+    public static Response doService(Request request)   {
 
         try {
             Response response = new Response();
@@ -27,27 +27,36 @@ public class ShuntController {
 
             ShuntStrategy shuntStrategy = ShuntStrategyFactory.getShuntStrategy(ConfigCenter.strategy);
 
-            Token token = shuntStrategy.getToken(request, context);
+            Token token = shuntStrategy.getToken(request, context);//hash bucket
 
             String railExper = null;
             for (Map.Entry<String,Integer> experiment : ConfigCenter.experiments.entrySet()) {
                 String experimentName = experiment.getKey();
-                Integer experimentRang = experiment.getValue();
+                Integer experimentRang = experiment.getValue();//0-70,71-90,91-100
                 if(Integer.valueOf(token.getKey()) < experimentRang){
                     railExper = experimentName;
                     break;
                 }
             }
 
-            // if none experiment config
+            // find experiment config or not
             if(StringUtils.isEmpty(railExper)){
+                //none experiment
                 Class c = ClassUtil.getClassByAnnotationVal(request.uri);
                 Method m = ClassUtil.getMethodByAnnotationVal(request.uri);
                 Object o = c.newInstance();
                 m.invoke(o,context);
                 return context.response;
             }else{
+                //load experiment code
+//                Class c = ClassUtil.getClassByAnnotationVal(request.uri);
+                Class experimentClz = ClassUtil.getClassByAnnotationVal(railExper);
+                Method m = ClassUtil.getMethodByAnnotationVal(request.uri);
 
+                Object o = experimentClz.newInstance();
+//                context.currentExperimentParameterMap = ConfigCenter.experiments.get(railExper);
+                m.invoke(o,context);
+                return context.response;
             }
 
 
