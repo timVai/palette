@@ -17,7 +17,6 @@ import java.lang.reflect.Proxy;
 public class ProxyDemo {
 
 
-
 	private static void testJVMProxy(){
 		final PlayGroud real = new PlayGroud();
 
