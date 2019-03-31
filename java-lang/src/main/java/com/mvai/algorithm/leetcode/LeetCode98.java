@@ -1,12 +1,14 @@
-package com.mvai.algorithm.introduct;
+package com.mvai.algorithm.leetcode;
+
+import com.mvai.algorithm.introduct.TreeNode;
 
 import java.util.Stack;
+import java.util.concurrent.TimeUnit;
 
 /**
- * 遍历树
+ * 98. Validate Binary Search Tree
  */
-public class AVLTree {
-
+public class LeetCode98 {
 
     public static void main(String[] args) {
 
@@ -23,11 +25,11 @@ public class AVLTree {
         TreeNode right1 = new TreeNode(4,rl1,rr1);
         TreeNode root = new TreeNode(5,left1,right1);
 
-        System.out.println(recursionCheck(root));
+        System.out.println(check(root));
     }
 
-
     public static boolean check(TreeNode root){
+        Integer lastValue = Integer.MIN_VALUE;
         TreeNode cur = root;
         Stack<TreeNode> stack = new Stack();
         while(cur != null || !stack.empty()){
@@ -37,24 +39,15 @@ public class AVLTree {
             }
 
             cur = stack.pop();
-            System.out.println(cur.v);
-
+            if(cur.v < lastValue){
+                return false;
+            }
+            lastValue = cur.v;
             cur = cur.right;
         }
         return true;
     }
 
-    public static boolean recursionCheck(TreeNode root){
-        if(root == null){
-            return true;
-        }
-        recursionCheck(root.left);
-
-        Integer cur = root.v;
-        System.out.println(cur);
-
-        recursionCheck(root.right);
-        return false;
-    }
 
 }
+
